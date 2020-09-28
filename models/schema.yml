@@ -1,5 +1,17 @@
 version: 2
 
+sources:
+- name: jaffle_shop
+  database: raw
+  tables:
+    - name: orders
+    - name: customers
+
+- name: stripe
+  database: raw
+  tables: 
+  - name: payment
+
 models:
   - name: customers
     description: One record per customer
@@ -30,6 +42,7 @@ models:
           - unique
           - not_null
       - name: status
+        description: status of the order
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
